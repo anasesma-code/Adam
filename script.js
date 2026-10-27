@@ -38,11 +38,12 @@ if ('IntersectionObserver' in window) {
   sections.forEach((section) => section && observer.observe(section));
 }
 
-// "Book now" on the Counselling card pre-ticks the enquiry type
+// A service's "Book now" pre-selects its enquiry type
 const form = document.getElementById('contact-form');
-document.querySelectorAll('[data-enquiry="counselling"]').forEach((button) =>
+document.querySelectorAll('[data-enquiry]').forEach((button) =>
   button.addEventListener('click', () => {
-    form.querySelector('input[value="Counselling"]').checked = true;
+    const option = form.querySelector(`input[value="${button.dataset.enquiry}"]`);
+    if (option) option.checked = true;
   })
 );
 
